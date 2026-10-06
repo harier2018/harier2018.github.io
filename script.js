@@ -34,9 +34,11 @@ primaryNav.querySelectorAll('a').forEach(link => {
 
 // Close on outside click
 document.addEventListener('click', (e) => {
-  if (primaryNav.classList.contains('active') &&
-      !primaryNav.contains(e.target) &&
-      !navToggle.contains(e.target)) {
+  if (
+    primaryNav.classList.contains('active') &&
+    !primaryNav.contains(e.target) &&
+    !navToggle.contains(e.target)
+  ) {
     closeMenu();
   }
 });
@@ -49,37 +51,77 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Close menu when resizing to desktop
+
+// ===== Loading Screen =====
+window.addEventListener("load", function () {
+  const loader = document.getElementById("loader");
+
+  // Let the first paint settle, then fade the loader away.
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      loader.classList.add("hide");
+      document.body.classList.remove("is-loading");
+
+      // Remove loader from the accessibility tree after transition.
+      setTimeout(() => {
+        loader.setAttribute("aria-hidden", "true");
+      }, 700);
+
+    }, 300);
+  });
+});
+
+
+// ===== Close menu when resizing to desktop =====
 let resizeTimer;
+
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
+
   resizeTimer = setTimeout(() => {
-    if (window.innerWidth > 768 && primaryNav.classList.contains('active')) {
+    if (
+      window.innerWidth > 768 &&
+      primaryNav.classList.contains('active')
+    ) {
       closeMenu();
     }
   }, 150);
 });
 
+
 // ===== Reveal Animation =====
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const prefersReducedMotion =
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 if (prefersReducedMotion) {
+
   // Just show everything
-  document.querySelectorAll('.section, .contact, .hero-card').forEach(el => {
-    el.classList.add('reveal', 'show');
-  });
+  document
+    .querySelectorAll('.section, .contact, .hero-card')
+    .forEach(el => {
+      el.classList.add('reveal', 'show');
+    });
+
 } else {
+
   const revealObserver = new IntersectionObserver((entries) => {
+
     entries.forEach(entry => {
+
       if (entry.isIntersecting) {
         entry.target.classList.add('show');
         revealObserver.unobserve(entry.target);
       }
+
     });
+
   }, { threshold: 0.08 });
 
-  document.querySelectorAll('.section, .contact, .hero-card').forEach(el => {
-    el.classList.add('reveal');
-    revealObserver.observe(el);
-  });
+
+  document
+    .querySelectorAll('.section, .contact, .hero-card')
+    .forEach(el => {
+      el.classList.add('reveal');
+      revealObserver.observe(el);
+    });
 }
