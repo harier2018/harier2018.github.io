@@ -7,7 +7,175 @@ body{margin:0;
     line-height:1.65}
     a{color:inherit;
         text-decoration:none
-    }.bg-orb{
+    }/* =========================
+   LOADING SCREEN
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#08060d;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+body.is-loading{
+    overflow:hidden;
+}
+
+.loader-content{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* H logo */
+
+.loader-logo{
+    width:72px;
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:2px solid #a85cff;
+    border-radius:50%;
+
+    color:#fff;
+    font:700 32px 'Space Grotesk', sans-serif;
+
+    box-shadow:
+        0 0 20px rgba(168,92,255,.55),
+        0 0 50px rgba(168,92,255,.25);
+
+    animation:loaderPulse 1.8s ease-in-out infinite;
+}
+
+/* Name */
+
+.loader-name{
+    margin-top:20px;
+
+    font:700 22px 'Space Grotesk', sans-serif;
+    letter-spacing:5px;
+
+    color:#fff;
+}
+
+/* Subtitle */
+
+.loader-title{
+    margin-top:8px;
+
+    color:#a99bb5;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.loader-title span{
+    color:#a85cff;
+    margin:0 4px;
+}
+
+/* Loading bar */
+
+.loader-line{
+    width:180px;
+    height:2px;
+
+    margin-top:28px;
+
+    background:#261a32;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.loader-progress{
+    width:40%;
+    height:100%;
+
+    background:#a85cff;
+
+    box-shadow:
+        0 0 10px #a85cff,
+        0 0 20px rgba(168,92,255,.5);
+
+    animation:loaderProgress 1.2s ease-in-out infinite;
+}
+
+/* Animations */
+
+@keyframes loaderPulse{
+
+    0%,100%{
+        transform:scale(1);
+        box-shadow:
+            0 0 20px rgba(168,92,255,.55),
+            0 0 50px rgba(168,92,255,.25);
+    }
+
+    50%{
+        transform:scale(1.06);
+        box-shadow:
+            0 0 30px rgba(168,92,255,.8),
+            0 0 70px rgba(168,92,255,.35);
+    }
+}
+
+@keyframes loaderProgress{
+
+    0%{
+        transform:translateX(-120%);
+    }
+
+    100%{
+        transform:translateX(450%);
+    }
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .loader-logo{
+        width:62px;
+        height:62px;
+        font-size:28px;
+    }
+
+    .loader-name{
+        font-size:19px;
+        letter-spacing:4px;
+    }
+
+    .loader-title{
+        font-size:8px;
+        letter-spacing:1.5px;
+    }
+
+    .loader-line{
+        width:150px;
+    }
+}.bg-orb{
         position:fixed;
         width:420px;
         height:420px;
