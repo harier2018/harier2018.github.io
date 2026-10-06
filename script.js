@@ -52,23 +52,36 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// ===== Loading Screen =====
+// ===== Custom Loading Screen =====
 window.addEventListener("load", function () {
+
   const loader = document.getElementById("loader");
 
-  // Let the first paint settle, then fade the loader away.
+  if (!loader) return;
+
+  // Prevent scrolling while the loading screen is visible
+  document.body.classList.add("is-loading");
+
+  // Allow the loader animation to be seen briefly
   requestAnimationFrame(() => {
+
     setTimeout(() => {
+
+      // Start fade-out
       loader.classList.add("hide");
+
+      // Restore page scrolling
       document.body.classList.remove("is-loading");
 
-      // Remove loader from the accessibility tree after transition.
+      // Remove loader from accessibility tree
       setTimeout(() => {
         loader.setAttribute("aria-hidden", "true");
       }, 700);
 
-    }, 300);
+    }, 900);
+
   });
+
 });
 
 
