@@ -8,31 +8,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add("js");</script>
 </head>
-<body class="is-loading">
+<body>
 
-<div id="loader">
-    <div class="loader-content">
-
-        <div class="loader-logo">H</div>
-
-        <div class="loader-name">HARI E R</div>
-
-        <div class="loader-title">
-            QA <span>•</span> AUTOMATION <span>•</span> ENGINEERING
-        </div>
-
-        <div class="loader-line">
-            <div class="loader-progress"></div>
-        </div>
-
+<div id="loader" aria-hidden="false">
+  <div class="loader-content">
+    <div class="loader-logo" aria-hidden="true">H</div>
+    <div class="loader-name">HARI E R</div>
+    <div class="loader-title">QA <span>•</span> AUTOMATION <span>•</span> ENGINEERING</div>
+    <div class="loader-line" role="progressbar" aria-label="Loading portfolio">
+      <div class="loader-progress"></div>
     </div>
+  </div>
 </div>
 
-<div class="bg-orb orb1"></div></div><div class="bg-orb orb2"></div>
-<nav>
-  <div class="brand">H<span>R</span></div>
-  <div class="navlinks"><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></div>
+<div class="bg-orb orb1"></div><div class="bg-orb orb2"></div>
+<nav aria-label="Primary navigation">
+  <a class="brand" href="#" aria-label="Hari home">H<span>R</span></a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="navlinks" id="primary-nav">
+    <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a>
+  </div>
 </nav>
 <header class="hero">
   <div class="hero-copy">
